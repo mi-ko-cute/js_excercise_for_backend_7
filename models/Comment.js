@@ -21,3 +21,9 @@ for (let i = 1; i <= 5; i++) {
 
     comments.push(comment);
 }
+
+module.exports = {
+    findAll: () => {
+        return comments.slice();
+    }
+};
