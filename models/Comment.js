@@ -17,7 +17,7 @@ for (let i = 1; i <= 5; i++) {
     const comment = new Comment({
         username: 'ユーザネーム' + i,
         body: '詳細文' + i
-    })
+    });
 
     comments.push(comment);
 }
