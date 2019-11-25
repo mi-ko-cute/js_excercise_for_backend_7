@@ -11,7 +11,7 @@ describe('test 「GET /api/comments」', () => {
 
         const comments = response.body;
         assert.ok(Array.isArray(comments));
-        todos.forEach((comment) => {
+        comments.forEach((comment) => {
             assert.strictEqual(typeof comment.id, 'number');
             assert.strictEqual(typeof comment.username, 'string');
             assert.strictEqual(typeof comment.body, 'string');
