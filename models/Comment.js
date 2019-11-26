@@ -46,7 +46,7 @@ module.exports = {
     },
 
     update: ({ id, username, body }) => {
-        if(typeof id !== 'number' || id < 1) {
+        if (typeof id !== 'number' || id < 1) {
             throw new Error('idは必須です(1以上の数値)');
         }
 
@@ -59,7 +59,7 @@ module.exports = {
         }
 
         const comment = comments.find(comment => id === comment.id);
-        if(!comment) {
+        if (!comment) {
             throw new Error('idに該当するidが存在しません');
         }
 
@@ -68,5 +68,21 @@ module.exports = {
         comment.updatedAt = new Date();
 
         return comment;
+    },
+
+    remove: (id) => {
+        if (typeof id !== 'number' || id < 1) {
+            throw new Error('idは必須です(1以上の数値)');
+        }
+
+        const targetIndex = comments.findIndex((comment) => id === comment.id);
+
+        if (targetIndex === -1) {
+            throw new Error('idに該当するidは存在しません');
+        }
+
+        const removedComment = comments.splice(targetIndex, 1)[0];
+
+        return removedComment;
     }
 };
