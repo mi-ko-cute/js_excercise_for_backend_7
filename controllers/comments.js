@@ -9,8 +9,8 @@ module.exports = {
 
     postComment: (req, res) => {
         try {
-            const {username, body} = req.body;
-            const createdComment = Comments.create({username, body});
+            const { username, body } = req.body;
+            const createdComment = Comments.create({ username, body });
 
             return res.status(200).json(createdComment);
         } catch (error) {
@@ -19,20 +19,20 @@ module.exports = {
     },
 
     putComment: (req, res) => {
-        try{
+        try {
             const id = req.params.id;
-            const {username, body} = req.body;
+            const { username, body } = req.body;
             const parsedId = parseInt(id, 10);
 
             const updatedComment = Comments.update({
-                id:parsedId, 
+                id: parsedId,
                 username: username,
                 body: body
             });
 
             return res.status(200).json(updatedComment);
         } catch (error) {
-            return res.status(400).json(error.message);
+            return res.status(404).json(error.message);
         }
     }
 };
