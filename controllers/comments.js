@@ -16,5 +16,23 @@ module.exports = {
         } catch (error) {
             return res.status(400).json(error.message);
         }
+    },
+
+    putComment: (req, res) => {
+        try{
+            const id = req.params.id;
+            const {username, body} = req.body;
+            const parsedId = parseInt(id, 10);
+
+            const updatedComment = Comments.update({
+                id:parsedId, 
+                username: username,
+                body: body
+            });
+
+            return res.status(200).json(updatedComment);
+        } catch (error) {
+            return res.status(400).json(error.message);
+        }
     }
 };
