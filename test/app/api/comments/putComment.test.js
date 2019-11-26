@@ -36,7 +36,7 @@ describe('test 「PUT /api/comments」', () => {
         const response = await requestHelper.request({
             method: 'put',
             endPoint: `/api/comments/${VALID_ID}`,
-            statusCode: (404)
+            statusCode: 404
         }).send(putData);
 
         assert.strictEqual(response.body, 'usernameは必須です');
@@ -48,7 +48,7 @@ describe('test 「PUT /api/comments」', () => {
         const response = await requestHelper.request({
             method: 'put',
             endPoint: `/api/comments/${VALID_ID}`,
-            statusCode: (404)
+            statusCode: 404
         }).send(putData);
 
         assert.strictEqual(response.body, 'bodyは必須です');
