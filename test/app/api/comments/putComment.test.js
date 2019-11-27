@@ -30,25 +30,25 @@ describe('test 「PUT /api/comments」', () => {
         assert.strictEqual(response.body, 'idに該当するidが存在しません');
     });
 
-    it('リクエストにusernameを含まなかったら、404エラーが返る', async () => {
+    it('リクエストにusernameを含まなかったら、400エラーが返る', async () => {
         const putData = { body: 'test no username' }
 
         const response = await requestHelper.request({
             method: 'put',
             endPoint: `/api/comments/${VALID_ID}`,
-            statusCode: 404
+            statusCode: 400
         }).send(putData);
 
         assert.strictEqual(response.body, 'usernameは必須です');
     });
 
-    it('リクエストにbodyを含まなかったら、404エラーが返る', async () => {
+    it('リクエストにbodyを含まなかったら、400エラーが返る', async () => {
         const putData = { username: 'test no body' }
 
         const response = await requestHelper.request({
             method: 'put',
             endPoint: `/api/comments/${VALID_ID}`,
-            statusCode: 404
+            statusCode: 400
         }).send(putData);
 
         assert.strictEqual(response.body, 'bodyは必須です');

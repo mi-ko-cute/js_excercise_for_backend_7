@@ -32,7 +32,11 @@ module.exports = {
 
             return res.status(200).json(updatedComment);
         } catch (error) {
-            return res.status(404).json(error.message);
+            if (error.message === 'idに該当するidが存在しません') {
+                return res.status(404).json(error.message);
+            } else {
+                return res.status(400).json(error.message);
+            }
         }
     }
 };
