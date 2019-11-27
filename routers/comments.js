@@ -9,7 +9,8 @@ router
 
 router
     .route('/:id')
-    .put(controller.putComment);
+    .put(controller.putComment)
+    .delete(controller.deleteComment);
 
 
 module.exports = router;
