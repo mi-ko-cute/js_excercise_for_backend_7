@@ -18,6 +18,28 @@ module.exports = {
         }
     },
 
+    putComment: (req, res) => {
+        try {
+            const id = req.params.id;
+            const { username, body } = req.body;
+            const parsedId = parseInt(id, 10);
+
+            const updatedComment = Comments.update({
+                id: parsedId,
+                username: username,
+                body: body
+            });
+
+            return res.status(200).json(updatedComment);
+        } catch (error) {
+            if (error.message === 'idに該当するidが存在しません') {
+                return res.status(404).json(error.message);
+            } else {
+                return res.status(400).json(error.message);
+            }
+        }
+    },
+
     deleteComment: (req, res) => {
         const id = req.params.id;
         const parsedId = parseInt(id, 10);
@@ -27,7 +49,11 @@ module.exports = {
 
             return res.status(200).json(deletedComment);
         } catch (error) {
-            return res.status(400).json(error.message);
+            if(error.message === 'idに該当するidは存在しません') {
+                return res.status(404).json(error.message);
+            } else {
+                return res.status(400).json(error.message);
+            }
         }
     }
 };

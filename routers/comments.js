@@ -9,6 +9,7 @@ router
 
 router
     .route('/:id')
+    .put(controller.putComment)
     .delete(controller.deleteComment);
 
 
