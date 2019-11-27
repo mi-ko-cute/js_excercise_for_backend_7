@@ -68,5 +68,21 @@ module.exports = {
         comment.updatedAt = new Date();
 
         return comment;
+    },
+
+    remove: (id) => {
+        if (typeof id !== 'number' || id < 1) {
+            throw new Error('idは必須です(1以上の数値)');
+        }
+
+        const targetIndex = comments.findIndex((comment) => id === comment.id);
+
+        if (targetIndex === -1) {
+            throw new Error('idに該当するidは存在しません');
+        }
+
+        const removedComment = comments.splice(targetIndex, 1)[0];
+
+        return removedComment;
     }
 };
